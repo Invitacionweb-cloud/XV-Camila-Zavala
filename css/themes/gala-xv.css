@@ -353,8 +353,8 @@
 
 .floral {
   position: absolute;
-  width: clamp(180px, 55vw, 380px);
-  height: clamp(180px, 55vw, 380px);
+  width: clamp(380px, 55vw, 580px);
+  height: clamp(380px, 55vw, 580px);
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0.9;
