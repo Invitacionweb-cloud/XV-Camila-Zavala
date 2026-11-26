@@ -1,0 +1,870 @@
+/* ==========================================================================
+   TEMA · "Vino Real & Oro Metálico"
+   Componentes específicos de la invitación XV Años
+   ========================================================================== */
+
+/* ==========================================================================
+   1. CANVAS DE PARTÍCULAS
+   ========================================================================== */
+
+#particles-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   2. APERTURA: SOBRE VIRTUAL
+   ========================================================================== */
+
+.envelope-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--bg-main);
+  background-image:
+    radial-gradient(
+      ellipse at center,
+      rgba(62, 9, 26, 0.85) 0%,
+      rgba(22, 2, 8, 1) 100%
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  transition:
+    opacity 0.9s var(--ease-out),
+    visibility 0.9s var(--ease-out);
+}
+
+.envelope-screen.is-open {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.envelope-frame {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 2.5rem 1.5rem;
+  border: 1px solid var(--border-gold);
+  text-align: center;
+  animation: frameReveal 1.4s var(--ease-out) both;
+}
+
+.envelope-frame::before {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  pointer-events: none;
+}
+
+@keyframes frameReveal {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.envelope-kicker {
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  margin-bottom: 2rem;
+}
+
+.envelope {
+  position: relative;
+  width: 220px;
+  height: 150px;
+  margin: 0 auto 1.6rem;
+  perspective: 900px;
+}
+
+.envelope-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #4a0f1f 0%, #2D0613 100%);
+  border: 1px solid var(--border-gold);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.55),
+    inset 0 0 30px rgba(212, 175, 55, 0.06);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 109px solid transparent;
+  border-right: 109px solid transparent;
+  border-top: 78px solid #3a0a18;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  transform-origin: top center;
+  transition: transform 1s var(--ease-out);
+  z-index: 3;
+}
+
+.envelope.is-open .envelope-flap {
+  transform: rotateX(-180deg);
+}
+
+.wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-script);
+  font-size: 2.1rem;
+  line-height: 1;
+  color: #2D0613;
+  background: radial-gradient(
+    circle at 32% 32%,
+    #FCF6BA 0%,
+    #D4AF37 45%,
+    #AA771C 100%
+  );
+  border-radius: 50%;
+  box-shadow:
+    0 4px 15px rgba(212, 175, 55, 0.5),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  z-index: 5;
+  transition:
+    transform 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out);
+  animation: sealPulse 2.6s ease-in-out infinite;
+}
+
+.wax-seal:hover,
+.wax-seal:focus-visible {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow:
+    0 6px 25px rgba(212, 175, 55, 0.85),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes sealPulse {
+  0%, 100% {
+    box-shadow:
+      0 4px 15px rgba(212, 175, 55, 0.5),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.3),
+      inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 4px 28px rgba(212, 175, 55, 0.95),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.3),
+      inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.envelope-hint {
+  font-family: var(--font-serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   3. BOTÓN DE MÚSICA FLOTANTE
+   ========================================================================== */
+
+.music-btn {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 90;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2D0613;
+  background: var(--gold-gradient);
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.5);
+  transition:
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out),
+    opacity 0.4s var(--ease-out);
+}
+
+.music-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.8);
+}
+
+.music-btn.is-hidden {
+  display: none;
+}
+
+.music-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.5;
+}
+
+.music-icon-pause { display: none; }
+.music-btn.is-playing .music-icon-play { display: none; }
+.music-btn.is-playing .music-icon-pause { display: block; }
+
+/* ==========================================================================
+   4. HERO
+   ========================================================================== */
+
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7rem 1.5rem 4rem;
+}
+
+.hero-frame {
+  position: absolute;
+  inset: 1.5rem;
+  pointer-events: none;
+}
+
+.frame-line {
+  position: absolute;
+  background: var(--gold-primary);
+  opacity: 0.4;
+}
+
+.frame-line-tl {
+  top: 0;
+  left: 0;
+  width: 55px;
+  height: 1px;
+}
+
+.frame-line-tl::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 55px;
+  background: var(--gold-primary);
+}
+
+.frame-line-br {
+  bottom: 0;
+  right: 0;
+  width: 55px;
+  height: 1px;
+}
+
+.frame-line-br::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  height: 55px;
+  background: var(--gold-primary);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+}
+
+.crown {
+  width: 62px;
+  margin: 0 auto 1.25rem;
+  animation: crownFloat 4.5s ease-in-out infinite;
+}
+
+.crown svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.45));
+}
+
+@keyframes crownFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+.hero-name {
+  font-family: var(--font-script);
+  font-size: clamp(3rem, 15vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  padding: 0.15em 0 0.1em;
+  background: var(--gold-gradient);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shimmerText 5s linear infinite;
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.25));
+}
+
+@keyframes shimmerText {
+  to { background-position: 200% center; }
+}
+
+.hero-subtitle {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  letter-spacing: 0.5em;
+  padding-left: 0.5em;
+  text-transform: uppercase;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.hero-phrase {
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   FLORALES DECORATIVOS
+   ========================================================================== */
+
+.floral {
+  position: absolute;
+  width: clamp(180px, 55vw, 380px);
+  height: clamp(180px, 55vw, 380px);
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform;
+}
+
+.floral-top-left {
+  top: -20px;
+  left: -20px;
+  background-position: top left;
+  background-image: url('../../assets/img/flor-superior.png');
+  animation: floralFloat 8s ease-in-out infinite;
+}
+
+.floral-bottom-right {
+  bottom: -20px;
+  right: -20px;
+  background-position: bottom right;
+  background-image: url('../../assets/img/flor-inferior.png');
+  animation: floralFloatBR 8s ease-in-out infinite 2s;
+}
+
+@keyframes floralFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(-4px, -8px, 0); }
+}
+
+@keyframes floralFloatBR {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(4px, 8px, 0); }
+}
+
+/* ==========================================================================
+   5. CUENTA REGRESIVA
+   ========================================================================== */
+
+.countdown-section {
+  text-align: center;
+}
+
+.countdown-frame {
+  position: relative;
+  padding: 2rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card);
+}
+
+.countdown-frame::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  pointer-events: none;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.countdown-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 0.25rem;
+}
+
+.countdown-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 22%;
+  right: 0;
+  width: 1px;
+  height: 56%;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--gold-primary),
+    transparent
+  );
+  opacity: 0.4;
+}
+
+.countdown-number {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.55rem, 6.5vw, 2.5rem);
+  line-height: 1;
+  color: var(--gold-light);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 14px rgba(212, 175, 55, 0.35);
+}
+
+.countdown-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.55rem;
+}
+
+.countdown-date {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  margin-top: 2rem;
+}
+
+/* ==========================================================================
+   6. CORTE DE HONOR
+   ========================================================================== */
+
+.honor-section {
+  text-align: center;
+}
+
+.honor-grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.honor-role {
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  margin-bottom: 1rem;
+}
+
+.honor-names {
+  font-family: var(--font-script);
+  font-size: 1.75rem;
+  line-height: 1.45;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ==========================================================================
+   7. ITINERARIO / UBICACIONES
+   ========================================================================== */
+
+.locations-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.location-card {
+  position: relative;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out);
+}
+
+.location-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-gold-strong);
+}
+
+.location-icon {
+  width: 46px;
+  height: 46px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-primary);
+  border: 1px solid var(--border-gold);
+  border-radius: 50%;
+}
+
+.location-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.5;
+}
+
+.location-time {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  letter-spacing: 0.22em;
+  color: var(--gold-light);
+}
+
+.location-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+.location-name {
+  font-family: var(--font-script);
+  font-size: 1.5rem;
+  line-height: 1.25;
+  color: var(--gold-primary);
+}
+
+.location-address {
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.location-card .btn-gold {
+  margin-top: 1rem;
+}
+
+/* ==========================================================================
+   8. GALERÍA (SWIPER)
+   ========================================================================== */
+
+.gallery-swiper {
+  overflow: hidden;
+  padding: 1rem 0 3.2rem;
+}
+
+.gallery-swiper .swiper-slide {
+  overflow: hidden;
+  border: 1px solid var(--border-gold);
+  background: linear-gradient(135deg, #3a0a18 0%, #2D0613 100%);
+}
+
+.gallery-swiper .swiper-slide img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-swiper .swiper-button-prev,
+.gallery-swiper .swiper-button-next {
+  width: 38px;
+  height: 38px;
+  color: var(--gold-primary);
+  background: rgba(22, 2, 8, 0.65);
+  border: 1px solid var(--border-gold);
+  border-radius: 50%;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.gallery-swiper .swiper-button-prev::after,
+.gallery-swiper .swiper-button-next::after {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.gallery-swiper .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  background: var(--gold-primary);
+  opacity: 0.3;
+  transition: opacity 0.35s, width 0.35s;
+}
+
+.gallery-swiper .swiper-pagination-bullet-active {
+  width: 22px;
+  border-radius: 3px;
+  opacity: 1;
+}
+
+/* ==========================================================================
+   9. PROTOCOLO Y DETALLES
+   ========================================================================== */
+
+.protocol-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.protocol-card {
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card);
+}
+
+.protocol-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-primary);
+  border: 1px solid var(--border-gold);
+  border-radius: 50%;
+}
+
+.protocol-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.5;
+}
+
+.protocol-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+.protocol-text {
+  font-family: var(--font-script);
+  font-size: 1.6rem;
+  line-height: 1.3;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.protocol-note {
+  font-weight: 300;
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 280px;
+}
+
+/* ==========================================================================
+   10. RSVP
+   ========================================================================== */
+
+.rsvp-section {
+  text-align: center;
+}
+
+.rsvp-card {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow:
+    var(--shadow-card),
+    0 0 60px rgba(212, 175, 55, 0.08);
+}
+
+.rsvp-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 1.25rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.rsvp-text {
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  max-width: 360px;
+  margin: 0 auto 2rem;
+}
+
+/* ==========================================================================
+   11. FOOTER
+   ========================================================================== */
+
+.footer {
+  position: relative;
+  z-index: 2;
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+}
+
+.footer-monogram {
+  font-family: var(--font-script);
+  font-size: 3.2rem;
+  line-height: 1.6;             
+  padding: 0.35em 0.2em 0.15em;  
+  display: inline-block;          
+  margin-bottom: 0.5rem;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.footer-text {
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 1rem;
+}
+
+.footer-year {
+  font-family: var(--font-serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.4em;
+  color: var(--gold-primary);
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   12. RESPONSIVE — TABLET & DESKTOP
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .honor-grid,
+  .locations-grid,
+  .protocol-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .hero-name {
+    font-size: clamp(4rem, 9vw, 6.5rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    letter-spacing: 0.6em;
+  }
+
+  .hero-phrase {
+    font-size: 1rem;
+  }
+
+  .floral {
+    width: 240px;
+    height: 240px;
+  }
+
+  .countdown-frame {
+    padding: 3rem 2.5rem;
+  }
+
+  .envelope {
+    width: 280px;
+    height: 190px;
+  }
+
+  .envelope-flap {
+    border-left-width: 139px;
+    border-right-width: 139px;
+    border-top-width: 99px;
+  }
+
+  .wax-seal {
+    width: 78px;
+    height: 78px;
+    font-size: 2.5rem;
+  }
+
+  .music-btn {
+    bottom: 2rem;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (max-width: 767px) {
+  .gallery-swiper .swiper-button-prev,
+  .gallery-swiper .swiper-button-next {
+    display: none;
+  }
+}
+
+.hero-name,
+.honor-names,
+.protocol-text,
+.location-name,
+.footer-monogram {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  line-height: 1.35;
+}

@@ -1,0 +1,44 @@
+/* ==========================================================================
+   VARIABLES GLOBALES · Tema "Vino Real & Oro Metálico"
+   ========================================================================== */
+
+:root {
+  /* Fondos */
+  --bg-main: #2D0613;
+  --bg-vignette: #160208;
+  --bg-card: rgba(62, 9, 26, 0.72);
+
+  /* Paleta dorada */
+  --gold-primary: #D4AF37;
+  --gold-light: #FCF6BA;
+  --gold-dark: #AA771C;
+  --gold-gradient: linear-gradient(
+    135deg,
+    #BF953F 0%,
+    #FCF6BA 35%,
+    #B38728 65%,
+    #FBF5B7 85%,
+    #AA771C 100%
+  );
+
+  /* Texto */
+  --text-main: #F8F2E7;
+  --text-muted: #D8C7B8;
+
+  /* Bordes y sombras */
+  --border-gold: rgba(212, 175, 55, 0.35);
+  --border-gold-strong: rgba(212, 175, 55, 0.6);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-gold: 0 0 20px rgba(212, 175, 55, 0.2);
+
+  /* Tipografía */
+  --font-script: 'Great Vibes', cursive;
+  --font-serif: 'Cinzel', serif;
+  --font-sans: 'Montserrat', system-ui, sans-serif;
+
+  /* Layout y motion */
+  --container-max: 960px;
+  --radius-sm: 2px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}

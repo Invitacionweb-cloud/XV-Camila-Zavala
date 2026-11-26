@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2D0613">
+  <meta name="description" content="Invitación digital a los XV Años de Camila Zavala. 19 de Diciembre de 2026.">
+  <title>Camila Zavala · Mis XV Años</title>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Librerías externas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/themes/gala-xv.css">
+</head>
+
+<body class="lock-scroll">
+
+  <!-- Canvas: Partículas doradas (bokeh) -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================================
+       APERTURA: SOBRE VIRTUAL
+       ============================================================ -->
+  <section class="envelope-screen" id="envelopeScreen" aria-label="Sobre de invitación">
+    <div class="envelope-frame">
+      <p class="envelope-kicker">Tienes una invitación especial</p>
+
+      <div class="envelope" id="envelope">
+        <div class="envelope-body">
+          <div class="envelope-flap" id="envelopeFlap"></div>
+          <button
+            class="wax-seal"
+            id="waxSeal"
+            type="button"
+            aria-label="Abrir invitación"
+          >
+            C
+          </button>
+        </div>
+      </div>
+
+      <p class="envelope-hint">Toca el sello para abrir</p>
+    </div>
+  </section>
+
+  <!-- Botón flotante de música -->
+  <button
+    class="music-btn is-hidden"
+    id="musicBtn"
+    type="button"
+    aria-label="Reproducir música"
+  >
+    <i data-lucide="play" class="music-icon-play"></i>
+    <i data-lucide="pause" class="music-icon-pause"></i>
+  </button>
+
+  <!-- ============================================================
+       CONTENIDO PRINCIPAL
+       ============================================================ -->
+  <main id="mainContent">
+
+    <!-- Hero: Portada Editorial -->
+    <section class="section hero" id="hero">
+      <div class="floral floral-top-left" aria-hidden="true"></div>
+      <div class="floral floral-bottom-right" aria-hidden="true"></div>
+
+      <div class="hero-frame" aria-hidden="true">
+        <span class="frame-line frame-line-tl"></span>
+        <span class="frame-line frame-line-br"></span>
+      </div>
+
+      <div class="hero-content">
+        <div class="crown" aria-hidden="true">
+          <svg viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="crownGold" x1="0" y1="0" x2="64" y2="40" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#BF953F"/>
+                <stop offset="35%" stop-color="#FCF6BA"/>
+                <stop offset="65%" stop-color="#B38728"/>
+                <stop offset="85%" stop-color="#FBF5B7"/>
+                <stop offset="100%" stop-color="#AA771C"/>
+              </linearGradient>
+            </defs>
+            <path d="M4 33 L11 12 L21 25 L32 5 L43 25 L53 12 L60 33 Z"
+                  fill="none" stroke="url(#crownGold)" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="11" cy="10" r="2" fill="url(#crownGold)"/>
+            <circle cx="32" cy="3.5" r="2" fill="url(#crownGold)"/>
+            <circle cx="53" cy="10" r="2" fill="url(#crownGold)"/>
+          </svg>
+        </div>
+
+        <h1 class="hero-name" data-aos="fade-up">Camila Zavala</h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="150">Mis Quince Años</p>
+
+        <div class="ornament-divider" data-aos="fade-up" data-aos-delay="250">
+          <span></span><i></i><span></span>
+        </div>
+
+        <p class="hero-phrase" data-aos="fade-up" data-aos-delay="350">
+          Hay momentos que se guardan en el alma para siempre,
+          y hoy quiero compartir contigo el más importante.
+        </p>
+      </div>
+    </section>
+
+    <!-- Cuenta Regresiva -->
+    <section class="section countdown-section" id="countdown">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-kicker">Faltan</p>
+        <h2 class="section-title">Días para celebrar</h2>
+      </div>
+
+      <div class="countdown-frame" data-aos="fade-up" data-aos-delay="150">
+        <div class="countdown">
+          <div class="countdown-item">
+            <span class="countdown-number" data-countdown="days">00</span>
+            <span class="countdown-label">Días</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" data-countdown="hours">00</span>
+            <span class="countdown-label">Horas</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" data-countdown="minutes">00</span>
+            <span class="countdown-label">Min</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" data-countdown="seconds">00</span>
+            <span class="countdown-label">Seg</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- [Fecha visible del evento] -->
+      <p class="countdown-date" data-aos="fade-up" data-aos-delay="250">18 de Diciembre de 2026</p>
+    </section>
+
+    <!-- Corte de Honor -->
+    <section class="section honor-section" id="honor">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-kicker">Corte de Honor</p>
+        <h2 class="section-title">Con la bendición de</h2>
+      </div>
+
+      <div class="honor-grid">
+        <div class="honor-block" data-aos="fade-up" data-aos-delay="100">
+          <div class="ornament-divider small"><span></span><i></i><span></span></div>
+          <p class="honor-role">Mis Papás</p>
+          <p class="honor-names">Gabriel Zavala<br>Gabriela Mendoza</p>
+        </div>
+
+        <div class="honor-block" data-aos="fade-up" data-aos-delay="200">
+          <div class="ornament-divider small"><span></span><i></i><span></span></div>
+          <p class="honor-role">Mis Padrinos</p>
+          <p class="honor-names">René Mendoza<br>Margarita Verdugo</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Itinerario de Ubicaciones -->
+    <section class="section locations-section" id="locations">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-kicker">Itinerario</p>
+        <h2 class="section-title">Lugares y Horarios</h2>
+      </div>
+
+      <div class="locations-grid">
+        <!-- Ceremonia -->
+        <article class="location-card" data-aos="fade-up">
+          <div class="location-icon" aria-hidden="true">
+            <i data-lucide="church"></i>
+          </div>
+          <p class="location-time">7:00 PM</p>
+          <h3 class="location-title">Ceremonia Religiosa</h3>
+          <p class="location-name">Parroquia San Juan Bautista</p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d910.4066902040231!2d-110.31376313802014!3d24.114617721596602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86afd2d95032dab5%3A0xdbd3c0e295dae058!2sParroquia%20San%20Juan%20Bautista!5e0!3m2!1ses!2smx!4v1795677692997!5m2!1ses!2smx" width="250" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <a
+            href="https://maps.app.goo.gl/fcp21dLjhF997b119"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-gold"
+          >
+            <i data-lucide="map-pin"></i>
+            <span>Ver Ubicación</span>
+          </a>
+        </article>
+
+        <!-- Recepción -->
+        <article class="location-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="location-icon" aria-hidden="true">
+            <i data-lucide="wine"></i>
+          </div>
+          <p class="location-time">8:30 PM</p>
+          <h3 class="location-title">Recepción</h3>
+          <p class="location-name">Salón Grand Palace</p>
+          <p class="location-address">Calle 5 de Mayo, Col. Municipio Libre</p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d910.2159521231071!2d-110.28391421578243!3d24.141420552385778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86afd30054a5f105%3A0xb50219c22bc13bce!2sSalon%20de%20eventos!5e0!3m2!1ses!2smx!4v1795677640396!5m2!1ses!2smx" width="250" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <a
+            href="https://maps.app.goo.gl/Fc6BVScqPAaoeejdA"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-gold"
+          >
+            <i data-lucide="map-pin"></i>
+            <span>Ver Ubicación</span>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Galería Editorial -->
+    <section class="section gallery-section" id="gallery">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-kicker">Recuerdos</p>
+        <h2 class="section-title">Momentos</h2>
+      </div>
+
+      <div class="swiper gallery-swiper" data-aos="fade-up" data-aos-delay="150">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="assets/img/galeria-1.jpg" alt="Camila · Recuerdo 1" loading="lazy"></div>
+          <div class="swiper-slide"><img src="assets/img/galeria-2.jpg" alt="Camila · Recuerdo 2" loading="lazy"></div>
+          <div class="swiper-slide"><img src="assets/img/galeria-3.jpg" alt="Camila · Recuerdo 3" loading="lazy"></div>
+          <div class="swiper-slide"><img src="assets/img/galeria-4.jpg" alt="Camila · Recuerdo 4" loading="lazy"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <button class="swiper-button-prev" type="button" aria-label="Foto anterior"></button>
+        <button class="swiper-button-next" type="button" aria-label="Foto siguiente"></button>
+      </div>
+    </section>
+
+    <!-- Protocolo y Detalles -->
+    <section class="section protocol-section" id="protocol">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-kicker">Protocolo</p>
+        <h2 class="section-title">Detalles a considerar</h2>
+      </div>
+
+      <div class="protocol-grid">
+        <article class="protocol-card" data-aos="fade-up">
+          <div class="protocol-icon" aria-hidden="true">
+            <i data-lucide="shirt"></i>
+          </div>
+          <h3 class="protocol-title">Código de Vestimenta</h3>
+          <p class="protocol-text">Formal / Gala</p>
+          <p class="protocol-note">
+            Ejemplo [Reservamos el color vino y borgoña exclusivamente para la festejada.]
+          </p>
+        </article>
+
+        <article class="protocol-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="protocol-icon" aria-hidden="true">
+            <i data-lucide="gift"></i>
+          </div>
+          <h3 class="protocol-title">Sugerencia de Regalo</h3>
+          <p class="protocol-text">Lluvia de Sobres</p>
+          <p class="protocol-note">
+            Tu presencia es mi mejor regalo. Si deseas obsequiarme algo,
+            será bienvenido en efectivo.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section rsvp-section" id="rsvp">
+      <div class="rsvp-card" data-aos="fade-up">
+        <div class="ornament-divider small"><span></span><i></i><span></span></div>
+        <h2 class="rsvp-title">Confirma tu Asistencia</h2>
+        <p class="rsvp-text">
+          Tu presencia hará esta noche aún más especial.
+          Por favor confirma antes del 1 de Diciembre.
+        </p>
+        <a
+          href="https://wa.me/[NUMERO_WHATSAPP]?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20Años%20de%20Camila%20Zavala."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-gold btn-gold-large"
+        >
+          <i data-lucide="message-circle"></i>
+          <span>Confirmar Asistencia</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-monogram" aria-hidden="true">CZ</div>
+      <div class="ornament-divider small"><span></span><i></i><span></span></div>
+      <p class="footer-text">Camila Zavala · XV Años</p>
+      <p class="footer-year">2026</p>
+    </footer>
+
+  </main>
+
+  <!-- Librerías externas (JS) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
