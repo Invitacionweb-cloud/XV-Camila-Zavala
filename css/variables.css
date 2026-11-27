@@ -3,12 +3,12 @@
    ========================================================================== */
 
 :root {
-  /* Fondos */
-  --bg-main: #2D0613;
-  --bg-vignette: #160208;
-  --bg-card: rgba(62, 9, 26, 0.72);
+  /* Fondos — rojo cardenal */
+  --bg-main: #A31224;
+  --bg-vignette: #4A020B;
+  --bg-card: rgba(140, 18, 40, 0.72);
 
-  /* Paleta dorada */
+  /* Paleta dorada (sin cambios) */
   --gold-primary: #D4AF37;
   --gold-light: #FCF6BA;
   --gold-dark: #AA771C;
@@ -21,22 +21,22 @@
     #AA771C 100%
   );
 
-  /* Texto */
-  --text-main: #F8F2E7;
-  --text-muted: #D8C7B8;
+  /* Texto — ligeramente más cálido para contraste sobre rojo */
+  --text-main: #FFF8EE;
+  --text-muted: #EFD9C8;
 
-  /* Bordes y sombras */
-  --border-gold: rgba(212, 175, 55, 0.35);
-  --border-gold-strong: rgba(212, 175, 55, 0.6);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-gold: 0 0 20px rgba(212, 175, 55, 0.2);
+  /* Bordes — subidos un paso para que el oro "respire" sobre rojo */
+  --border-gold: rgba(212, 175, 55, 0.45);
+  --border-gold-strong: rgba(212, 175, 55, 0.7);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --shadow-gold: 0 0 20px rgba(212, 175, 55, 0.25);
 
-  /* Tipografía */
+  /* Tipografía (sin cambios) */
   --font-script: 'Great Vibes', cursive;
   --font-serif: 'Cinzel', serif;
   --font-sans: 'Montserrat', system-ui, sans-serif;
 
-  /* Layout y motion */
+  /* Layout y motion (sin cambios) */
   --container-max: 960px;
   --radius-sm: 2px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);

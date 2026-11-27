@@ -23,12 +23,12 @@ body {
   line-height: 1.6;
   color: var(--text-main);
   background-color: var(--bg-main);
-  background-image:
+    background-image:
     radial-gradient(
       ellipse at center,
       transparent 0%,
-      rgba(22, 2, 8, 0.55) 65%,
-      rgba(22, 2, 8, 0.95) 100%
+      rgba(74, 2, 11, 0.55) 65%,
+      rgba(74, 2, 11, 0.95) 100%
     );
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -168,7 +168,7 @@ a:focus-visible {
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #2D0613;
+  color: #4A020B;
   background: var(--gold-gradient);
   border-radius: var(--radius-sm);
   overflow: hidden;
